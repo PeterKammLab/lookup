@@ -17,6 +17,9 @@ def get_address(lat, lng):
 # Create a Folium map without a default tile layer
 m = folium.Map(location=[45.26535001807013, 19.829569286510928], zoom_start=15, tiles=None)
 
+# Add Geocoder Search to the map
+Geocoder().add_to(m)
+
 # Add OpenStreetMap with a custom visible name
 folium.TileLayer("openstreetmap", name="OpenStreetMap").add_to(m)
 
