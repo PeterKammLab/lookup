@@ -7,7 +7,7 @@ from geopy.geocoders import Nominatim
 # Title of the app
 st.title("Glavu gore!")
 
-st.markdown("**Pomoži nam da zabeležimo sve građevine u Srbiji gde postoji opasnost od obrušavanja**")
+st.markdown("**Pomozi nam da zabeležimo sve građevine u Srbiji gde postoji opasnost od obrušavanja**")
 
 # Function to get address from latitude and longitude using reverse geocoding
 def get_address(lat, lng):
