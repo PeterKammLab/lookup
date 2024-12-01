@@ -1,4 +1,3 @@
-# Libraries
 import streamlit as st
 import folium
 from streamlit_folium import st_folium
@@ -15,11 +14,20 @@ def get_address(lat, lng):
     location = geolocator.reverse((lat, lng), language='sr')  # language='sr' for Serbian
     return location.address if location else "Address not found"
 
-# Create a Folium map centered on a specific location (e.g., Serbia) with a grayscale tile layer
-m = folium.Map(location=[45.26535001807013, 19.829569286510928], zoom_start=15, 
-               tiles="cartodbpositron")  # Greyscale tile layer
+# Create a Folium map centered on a specific location (e.g., Serbia)
+m = folium.Map(location=[45.26535001807013, 19.829569286510928], zoom_start=15)
 
-# Add a LatLngPopup to the map, which shows the clicked position
+# Add grayscale (default) and satellite layers
+folium.TileLayer("cartodbpositron", name="Grayscale").add_to(m)
+folium.TileLayer("stamenterrain", name="Terrain").add_to(m)
+folium.TileLayer("openstreetmap", name="OpenStreetMap").add_to(m)
+folium.TileLayer("stamenwatercolor", name="Watercolor").add_to(m)
+folium.TileLayer("Esri.WorldImagery", name="Satellite").add_to(m)
+
+# Add a layer control to toggle between map types
+folium.LayerControl().add_to(m)
+
+# Add a LatLngPopup to the map
 m.add_child(folium.LatLngPopup())
 
 # Render the map in Streamlit using st_folium and capture the click event
@@ -33,27 +41,4 @@ if map_data and map_data.get("last_clicked"):
     location = get_address(lat, lon)
 
 # User input fields below the map
-st.subheader("Unos podataka o građevini")
-
-# Location field - populated with the address from the clicked location
-location_input = st.text_input("Lokacija", value=location if location else "")
-
-# Input for building type
-building_type = st.radio("Gradjevina", ["Privatna", "Javna"])
-
-# Input for labeling status
-labeling_status = st.radio("Obeleženo", ["Da", "Ne", "Delimično"])
-
-# Input for additional description
-description = st.text_area("Dodatni opis", "")
-
-# Display the inputs
-st.write(f"Uneta lokacija: {location_input}")
-st.write(f"Vrsta građevine: {building_type}")
-st.write(f"Obeleženo: {labeling_status}")
-st.write(f"Opis: {description}")
-
-
-# Add the submit button
-if st.button("Unesi građevinu"):
-    st.write(f"Gradjevina je uspešno unesena!")
+st.subheader("Unos pod
