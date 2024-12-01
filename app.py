@@ -41,4 +41,26 @@ if map_data and map_data.get("last_clicked"):
     location = get_address(lat, lon)
 
 # User input fields below the map
-st.subheader("Unos pod
+st.subheader("Unos podataka o građevini")
+
+# Location field - populated with the address from the clicked location
+location_input = st.text_input("Lokacija", value=location if location else "")
+
+# Input for building type
+building_type = st.radio("Gradjevina", ["Privatna", "Javna"])
+
+# Input for labeling status
+labeling_status = st.radio("Obeleženo", ["Da", "Ne", "Delimično"])
+
+# Input for additional description
+description = st.text_area("Dodatni opis", "")
+
+# Display the inputs
+st.write(f"Uneta lokacija: {location_input}")
+st.write(f"Vrsta građevine: {building_type}")
+st.write(f"Obeleženo: {labeling_status}")
+st.write(f"Opis: {description}")
+
+# Add the submit button
+if st.button("Unesi građevinu"):
+    st.write(f"Gradjevina je uspešno unesena!")
