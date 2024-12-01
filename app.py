@@ -19,9 +19,7 @@ m = folium.Map(location=[45.26535001807013, 19.829569286510928], zoom_start=15)
 
 # Add grayscale (default) and satellite layers
 folium.TileLayer("cartodbpositron", name="Grayscale").add_to(m)
-folium.TileLayer("stamenterrain", name="Terrain").add_to(m)
 folium.TileLayer("openstreetmap", name="OpenStreetMap").add_to(m)
-folium.TileLayer("stamenwatercolor", name="Watercolor").add_to(m)
 folium.TileLayer("Esri.WorldImagery", name="Satellite").add_to(m)
 
 # Add a layer control to toggle between map types
