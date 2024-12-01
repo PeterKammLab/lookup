@@ -2,6 +2,7 @@ import streamlit as st
 import folium
 from streamlit_folium import st_folium
 from geopy.geocoders import Nominatim
+from folium.plugins import Geocoder
 
 # Title of the app
 st.title("Glavu gore!")
