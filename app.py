@@ -14,13 +14,16 @@ def get_address(lat, lng):
     location = geolocator.reverse((lat, lng), language='sr')  # language='sr' for Serbian
     return location.address if location else "Address not found"
 
-# Create a Folium map centered on a specific location (e.g., Serbia)
-m = folium.Map(location=[45.26535001807013, 19.829569286510928], zoom_start=15)
+# Create a Folium map without a default tile layer
+m = folium.Map(location=[45.26535001807013, 19.829569286510928], zoom_start=15, tiles=None)
 
-# Add grayscale (default) and satellite layers
+# Add OpenStreetMap with a custom visible name
+folium.TileLayer("openstreetmap", name="OpenStreetMap").add_to(m)
+
+# Add additional layers for user options
 folium.TileLayer("cartodbpositron", name="Grayscale").add_to(m)
-#folium.TileLayer("openstreetmap", name="OpenStreetMap").add_to(m)
 folium.TileLayer("Esri.WorldImagery", name="Satellite").add_to(m)
+
 
 # Add a layer control to toggle between map types
 folium.LayerControl().add_to(m)
